@@ -1,0 +1,29 @@
+.page {
+  padding: 20px;
+  height: 100%;
+}
+
+.title {
+  color: var(--ion-color-dark);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+
+.sub-title {
+  color: var(--ion-color-dark-tint);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 0.6rem;
+}
+
+.text-align {
+  &-start {
+    text-align: start;
+  }
+
+  &-center {
+    text-align: center;
+  }
+}

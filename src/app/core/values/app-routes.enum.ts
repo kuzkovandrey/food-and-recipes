@@ -1,0 +1,8 @@
+export enum AppRoutes {
+  ROOT = '',
+  HOME = 'home',
+  SEARCH = 'search',
+  FAVORITES = 'favorites',
+  AUTH = 'auth',
+  ACCOUNT = 'account',
+}

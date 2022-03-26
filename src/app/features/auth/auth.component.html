@@ -1,0 +1,20 @@
+<div class="page sign-in">
+  <auth-form
+    (sendFormValue)="sendForm($event)"
+    [isSignIn]="isSignIn">
+  </auth-form>
+  <ng-template [ngIf]="isSignIn" [ngIfElse]="signUp">
+    <p class="sub-title text-align-center">
+      You a have an acoount? <br />
+      Go to
+      <ion-label color="primary" (click)="toggleSignType()">sign up</ion-label>.
+    </p>
+  </ng-template>
+  <ng-template #signUp>
+    <p class="sub-title text-align-center">
+      You a not have an acoount? <br />
+      Go to
+      <ion-label color="primary" (click)="toggleSignType()">sign in</ion-label>.
+    </p>
+  </ng-template>
+</div>
