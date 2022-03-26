@@ -55,7 +55,7 @@ export class AuthComponent implements OnDestroy {
   };
 
   private handleSuccessAuth = () => {
-    this.router.navigate([AppRoutes.ACCOUNT], {
+    this.router.navigate([AppRoutes.HOME], {
       replaceUrl: true,
     });
   };

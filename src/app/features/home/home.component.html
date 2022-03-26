@@ -1,13 +1,26 @@
-<div class="page home-page">
-  <div class="home-page__text-container">
-    <h1 class="title">Food and recipes application</h1>
-    <p class="sub-title">
-      Find and share everyday cooking inspiration on Food and Recipes App.
-      Discover recipes, cooks, and how-tos based on the food you love and add to
-      faviries.
-    </p>
+<ion-content scrollX="true">
+  <h1 class="title-2 text-align-center">Random recipes</h1>
+
+  <div class="page home-page">
+    <!-- [ngIf]="isAuthorized$ | async" -->
+    <ng-template [ngIf]="true" [ngIfElse]="withoutAuth">
+      <ng-container *ngFor="let recipe of recipes$ | async">
+        <food-card [recipe]="recipe"></food-card>
+      </ng-container>
+    </ng-template>
+
+    <ng-template #withoutAuth>
+      <div class="home-page__text-container">
+        <h1 class="title">Food and recipes application</h1>
+        <p class="sub-title">
+          Find and share everyday cooking inspiration on Food and Recipes App.
+          Discover recipes, cooks, and how-tos based on the food you love and
+          add to faviries.
+        </p>
+      </div>
+      <ion-button class="button" expand="full" (click)="navigateToAuth()">
+        Get started
+      </ion-button>
+    </ng-template>
   </div>
-  <ion-button class="button" expand="full" (click)="navigateToAuth()">
-    Get started
-  </ion-button>
-</div>
+</ion-content>

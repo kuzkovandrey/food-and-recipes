@@ -23,7 +23,6 @@ export class RecipesApi {
     //     },
     //   },
     // );
-
     return of({ recipes: MockRundomRecipes });
   }
 }
