@@ -1,0 +1,22 @@
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__status {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--ion-color-danger-tint);
+  }
+
+  &__description {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+  }
+
+  &__button {
+    margin-top: 2rem;
+    width: 100%;
+  }
+}

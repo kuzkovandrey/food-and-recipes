@@ -5,4 +5,5 @@ export enum AppRoutes {
   FAVORITES = 'favorites',
   AUTH = 'auth',
   ACCOUNT = 'account',
+  ERROR = 'error',
 }

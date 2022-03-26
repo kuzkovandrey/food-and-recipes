@@ -5,15 +5,16 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MenuModule } from './components/menu/menu.module';
-import { HeaderModule } from './components/header/header.module';
+import { MenuModule } from '@shared/components/menu/menu.module';
+import { HeaderModule } from '@shared/components/header/header.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'environments/environment';
 import { CoreModule } from '@core/core.module';
+import { ErrorComponent } from '@shared/pages/error/error.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ErrorComponent],
   entryComponents: [],
   imports: [
     CoreModule,
