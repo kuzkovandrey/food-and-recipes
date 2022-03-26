@@ -11,7 +11,7 @@ export class UserAvatarComponent {
   @Input() email: string;
 
   get emailLetter(): string {
-    return this.email.charAt(0);
+    return this.email.charAt(0).toUpperCase();
   }
 }
 

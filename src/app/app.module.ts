@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'environments/environment';
 import { CoreModule } from '@core/core.module';
 import { ErrorComponent } from '@shared/pages/error/error.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, ErrorComponent],
@@ -26,6 +27,7 @@ import { ErrorComponent } from '@shared/pages/error/error.component';
     AppRoutingModule,
     MenuModule,
     HeaderModule,
+    HttpClientModule,
   ],
   providers: [
     {
