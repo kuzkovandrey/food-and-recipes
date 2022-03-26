@@ -10,11 +10,13 @@ import { HeaderModule } from './components/header/header.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'environments/environment';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    CoreModule,
     BrowserModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),

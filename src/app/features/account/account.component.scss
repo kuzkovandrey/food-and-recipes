@@ -1,0 +1,29 @@
+.account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  &__email {
+    margin-top: 1rem;
+  }
+
+  &__create-date {
+    margin-top: 0.5rem;
+  }
+
+  &__uid {
+    margin-top: 0.5rem;
+  }
+
+  &__button {
+    width: 100%;
+  }
+}
+
+.account-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

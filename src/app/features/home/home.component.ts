@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { AppRoutes } from '@core/values/app-routes.enum';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
+  constructor(private router: Router) { }
 
-  constructor() { }
-
-  ngOnInit() {
-    console.log('HomeComponent')
+  navigateToAuth() {
+    this.router.navigate([AppRoutes.AUTH]);
   }
 
 }

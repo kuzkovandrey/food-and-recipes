@@ -5,14 +5,12 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserInfo } from '@core/models/user-info.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class UserStorageService {
   constructor(private storageService: StorageService) {}
 
-  setUser(userInfo: UserInfo) {
-    this.storageService.set(StorageKeys.USER, JSON.stringify(userInfo));
+  setUser(userInfo: UserInfo): Observable<UserInfo>  {
+    return this.storageService.set(StorageKeys.USER, JSON.stringify(userInfo));
   }
 
   getCurrentUserInfo(): Observable<UserInfo> {

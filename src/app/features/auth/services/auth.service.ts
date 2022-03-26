@@ -1,9 +1,9 @@
 import { UserStorageService } from '@core/services/user-storage.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { UserCredential } from '@firebase/auth-types';
+import { UserCredential, User as FireUser } from '@firebase/auth-types';
 import { BehaviorSubject, from, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { UserInfoMapper } from '@core/mappers/user-info.mapper';
 import { UserInfo } from '@core/models/user-info.model';
@@ -23,23 +23,22 @@ export class AuthService {
     private userStorageService: UserStorageService,
   ) {}
 
-  private setAuthStatus(status: boolean) {
+  setAuthStatus(status: boolean) {
     this.isAuthorized.next(status);
   }
 
   private handleSuccessAuth = (userInfo: UserInfo) => {
-    this.userStorageService.setUser(userInfo);
     this.setAuthStatus(true);
   };
 
   private handleLogout = () => {
-    this.userStorageService.removeUser();
     this.setAuthStatus(false);
   };
 
   login({ email, password }: User): Observable<UserInfo> {
     return from(this.fireAuth.signInWithEmailAndPassword(email, password)).pipe(
       map(({ user }) => UserInfoMapper.map(user)),
+      switchMap((user) => this.userStorageService.setUser(user)),
       tap(this.handleSuccessAuth),
     );
   }
@@ -49,6 +48,7 @@ export class AuthService {
       this.fireAuth.createUserWithEmailAndPassword(email, password),
     ).pipe(
       map(({ user }) => UserInfoMapper.map(user)),
+      switchMap((user) => this.userStorageService.setUser(user)),
       tap(this.handleSuccessAuth),
     );
   }

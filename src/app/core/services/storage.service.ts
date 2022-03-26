@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { from, Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class StorageService {
   private storage: Storage | null = null;
 
@@ -13,12 +11,16 @@ export class StorageService {
   }
 
   private async init() {
+    if (this.storage) return this.storage;
+
     const storage = await this.storageService.create();
     this.storage = storage;
+
+    return this.storage;
   }
 
-  set(key: string, value: any) {
-    this.storage.set(key, value);
+  set(key: string, value: any): Observable<any> {
+    return from(this.storage.set(key, value));
   }
 
   get(key: string): Observable<any> {

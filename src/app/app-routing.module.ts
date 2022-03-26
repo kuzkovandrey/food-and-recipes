@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@core/guards/auth.guard';
 import { AppRoutes } from '@core/values/app-routes.enum';
 
 const routes: Routes = [
@@ -15,16 +16,19 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.SEARCH,
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/search/search.module').then((m) => m.SearchModule),
   },
   {
     path: AppRoutes.FAVORITES,
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/favorites/favorites.module').then((m) => m.FavoritesModule),
   },
   {
     path: AppRoutes.ACCOUNT,
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/account/account.module').then((m) => m.AccountModule),
   },

@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { AccountComponent } from './account.component';
 import { AccountRoutingModule } from './account-routing.module';
+import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, AccountRoutingModule],
-  declarations: [AccountComponent],
+  declarations: [AccountComponent, UserAvatarComponent],
   exports: [AccountComponent],
 })
 export class AccountModule {}

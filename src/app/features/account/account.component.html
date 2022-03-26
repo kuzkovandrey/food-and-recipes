@@ -1,3 +1,20 @@
-<p>
-  account works!
-</p>
+<div class="page account">
+  <ng-template [ngIf]="userInfo">
+    <div class="account-container">
+      <user-avatar
+        [email]="userInfo.email"
+        [photoUrl]="userInfo.photoURL">
+      </user-avatar>
+      <h2 class="account__email title">{{ userInfo.email }}</h2>
+      <p class="account__create-date sub-title">
+        Created at: {{ userInfo.creationTime | date }}
+      </p>
+      <ion-label class="account__uid sub-title" color="secondary">
+        Uid: {{ userInfo.uid }}
+      </ion-label>
+    </div>
+    <ion-button class="account__button" expand="full" (click)="showPopup()">
+      Logout
+    </ion-button>
+  </ng-template>
+</div>

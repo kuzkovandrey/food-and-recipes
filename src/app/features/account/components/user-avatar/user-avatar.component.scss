@@ -1,0 +1,15 @@
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #ccc;
+  background-size: cover;
+  width: 10rem;
+  height: 10rem;
+
+  &__letter {
+    font-size: 5rem;
+    color: var(--ion-color-primary-contrast);
+  }
+}

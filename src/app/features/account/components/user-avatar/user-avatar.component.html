@@ -1,0 +1,5 @@
+<div class="avatar" [style.background-image]="'url(' + photoUrl + ')'">
+  <ng-template [ngIf]="!photoUrl">
+    <span class="avatar__letter">{{ emailLetter }}</span>
+  </ng-template>
+</div>

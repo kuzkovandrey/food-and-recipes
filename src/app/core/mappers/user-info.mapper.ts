@@ -3,6 +3,8 @@ import { User } from '@firebase/auth-types';
 
 export class UserInfoMapper {
   public static map(user: User): UserInfo {
+    const meta = user?.metadata ? user.metadata : {};
+
     return {
       ...user.metadata,
       displayName: user.displayName,

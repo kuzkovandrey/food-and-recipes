@@ -1,3 +1,4 @@
+import { AppRoutes } from '@core/values/app-routes.enum';
 import { AuthService } from '@features/auth/services/auth.service';
 import { Component, OnDestroy } from '@angular/core';
 import { User } from '@features/auth/models/user.model';
@@ -6,6 +7,7 @@ import { UserInfo } from '@core/models/user-info.model';
 import { ToastController } from '@ionic/angular';
 import { ErrorResponse } from './models/error-response.model';
 import { ErrorMessages } from './values/error-messages.const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'auth',
@@ -20,6 +22,7 @@ export class AuthComponent implements OnDestroy {
   constructor(
     private authService: AuthService,
     private toastController: ToastController,
+    private router: Router,
   ) {}
 
   ngOnDestroy() {
@@ -42,6 +45,8 @@ export class AuthComponent implements OnDestroy {
   }
 
   private handleError = (error: ErrorResponse) => {
+    console.log(error)
+
     const message = !!ErrorMessages[error.code]
       ? ErrorMessages[error.code]
       : ErrorMessages.default;
@@ -50,8 +55,9 @@ export class AuthComponent implements OnDestroy {
   };
 
   private handleSuccessAuth = () => {
-    console.log('handleSuccessAuth');
-
+    this.router.navigate([AppRoutes.ACCOUNT], {
+      replaceUrl: true,
+    });
   };
 
   toggleSignType() {
