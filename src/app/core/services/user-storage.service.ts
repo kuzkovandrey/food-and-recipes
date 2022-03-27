@@ -1,8 +1,8 @@
 import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
 import { StorageKeys } from '@core/values/storage-keys.enum';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UserInfo } from '@core/models/user-info.model';
 
 @Injectable()

@@ -2,7 +2,7 @@ import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageKeys } from '@core/values/storage-keys.enum';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 type Favorites = Array<number>;
 
@@ -26,13 +26,17 @@ export class FavoritesStorageService {
   }
 
   getFavorites(): Observable<Favorites> {
-    return this.storageService.get<Favorites>(StorageKeys.FAVORITES);
+    return this.storageService.get<Favorites>(StorageKeys.FAVORITES).pipe(
+      map((favorites) => favorites ? favorites : []),
+    );
   }
 
   isFavorite(id: number): Observable<boolean> {
     return this.getFavorites().pipe(
       map((favorites) => favorites.find((_id) => _id === id)),
+      tap((f) => console.log('finded', f)),
       map((isFavorite) => !!isFavorite),
+      tap((i) => console.log('isFavorite', i)),
     );
   }
 

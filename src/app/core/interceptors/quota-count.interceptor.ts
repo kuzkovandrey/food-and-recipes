@@ -1,4 +1,4 @@
-import { filter, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {
   HttpInterceptor,

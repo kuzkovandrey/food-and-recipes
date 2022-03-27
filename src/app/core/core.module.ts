@@ -12,6 +12,7 @@ import { RecipesService } from './services/recipes.service';
 import { FavoritesStorageService } from './services/favorites-storage.service';
 import { ModalService } from './services/modal.service';
 import { UidService } from './services/uid.service';
+import { LoadingService } from './services/loading.service';
 
 @NgModule({
   providers: [
@@ -23,6 +24,7 @@ import { UidService } from './services/uid.service';
     FavoritesStorageService,
     ModalService,
     UidService,
+    LoadingService,
     RecipesApi,
     {
       provide: HTTP_INTERCEPTORS,
@@ -41,4 +43,6 @@ import { UidService } from './services/uid.service';
     },
   ],
 })
-export class CoreModule {}
+export class CoreModule {
+  constructor() {}
+}

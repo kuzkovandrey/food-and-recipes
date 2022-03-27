@@ -1,4 +1,4 @@
-import { FoodCardComponent } from './../../shared/components/food-card/food-card.component';
+import { FoodCardComponent } from '@shared/components/food-card/food-card.component';
 import { AuthService } from '@features/auth/services/auth.service';
 import { RecipesService } from '@core/services/recipes.service';
 import { AppRoutes } from '@core/values/app-routes.enum';
@@ -6,7 +6,6 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  ViewChild,
   ViewChildren,
   QueryList,
 } from '@angular/core';
@@ -14,7 +13,7 @@ import { Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { Recipe } from '@core/models/recipe.model';
 import { ModalService } from '@core/services/modal.service';
-import { ViewWillEnter, ViewDidEnter } from '@ionic/angular';
+import { ViewDidEnter } from '@ionic/angular';
 import { tap } from 'rxjs/operators';
 
 @Component({
