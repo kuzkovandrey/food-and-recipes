@@ -9,6 +9,9 @@ import { QuotaCountInterceptor } from './interceptors/quota-count.interceptor';
 import { QuotaService } from './services/quota.service';
 import { RecipesApi } from './api/recipes.api';
 import { RecipesService } from './services/recipes.service';
+import { FavoritesStorageService } from './services/favorites-storage.service';
+import { ModalService } from './services/modal.service';
+import { UidService } from './services/uid.service';
 
 @NgModule({
   providers: [
@@ -17,6 +20,9 @@ import { RecipesService } from './services/recipes.service';
     UserStorageService,
     QuotaService,
     RecipesService,
+    FavoritesStorageService,
+    ModalService,
+    UidService,
     RecipesApi,
     {
       provide: HTTP_INTERCEPTORS,
@@ -26,12 +32,12 @@ import { RecipesService } from './services/recipes.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: QuotaCountInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
-      multi: true
+      multi: true,
     },
   ],
 })

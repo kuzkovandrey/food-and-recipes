@@ -1,33 +1,38 @@
 import { Injectable } from '@angular/core';
+import { StorageKeys } from '@core/values/storage-keys.enum';
 import { Storage } from '@ionic/storage-angular';
 import { from, Observable } from 'rxjs';
+import { UidService } from './uid.service';
 
 @Injectable()
 export class StorageService {
   private storage: Storage | null = null;
 
-  constructor(private storageService: Storage) {
+  private get uid(): string {
+    return this.uidService.getUid();
+  }
+
+  constructor(
+    private storageService: Storage,
+    private uidService: UidService,
+  ) {
     this.init();
   }
 
   private async init() {
-    if (this.storage) return this.storage;
-
     const storage = await this.storageService.create();
     this.storage = storage;
-
-    return this.storage;
   }
 
-  set(key: string, value: any): Observable<any> {
-    return from(this.storage.set(key, value));
+  set<T>(key: StorageKeys, value: T): Observable<T> {
+    return from(this.storage.set(key + this.uid, value));
   }
 
-  get(key: string): Observable<any> {
-    return from(this.storage.get(key));
+  get<T>(key: StorageKeys): Observable<T> {
+    return from(this.storage.get(key + this.uid));
   }
 
-  remove(key: string) {
-    this.storage.remove(key);
+  remove(key: StorageKeys) {
+    this.storage.remove(key + this.uid);
   }
 }

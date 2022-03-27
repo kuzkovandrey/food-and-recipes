@@ -13,9 +13,11 @@ import { environment } from 'environments/environment';
 import { CoreModule } from '@core/core.module';
 import { ErrorComponent } from '@shared/pages/error/error.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RecipeModule } from '@shared/pages/recipe/recipe.module';
+import { ErrorModule } from '@shared/pages/error/error.module';
 
 @NgModule({
-  declarations: [AppComponent, ErrorComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     CoreModule,
@@ -26,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAuthModule,
     AppRoutingModule,
     MenuModule,
+    ErrorModule,
+    RecipeModule,
     HeaderModule,
     HttpClientModule,
   ],

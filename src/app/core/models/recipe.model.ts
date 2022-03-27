@@ -21,10 +21,10 @@ export interface Recipe {
   sourceName: string;
   pricePerServing: number;
   extendedIngredients: ExtendedIngredient[];
-  id: 633171;
+  id: number;
   title: string;
-  readyInMinutes: 45;
-  servings: 4;
+  readyInMinutes: number;
+  servings: number;
   sourceUrl: string;
   image: string;
   imageType: string;

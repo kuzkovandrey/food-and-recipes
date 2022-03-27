@@ -6,16 +6,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { MockRundomRecipes } from 'app/__mock__/random-recipes';
 
-
-
-type RandomRecipesRequest = { recipes: Recipe[] };
+type RandomRecipesResponce = { recipes: Recipe[] };
 
 @Injectable()
 export class RecipesApi {
   constructor(private httpClient: HttpClient) {}
 
-  getRandomRecipes(count: number): Observable<RandomRecipesRequest> {
-    // return this.httpClient.get<RandomRecipesRequest>(
+  getRandomRecipes(count: number): Observable<RandomRecipesResponce> {
+    // return this.httpClient.get<RandomRecipesResponce>(
     //   `${ApiEndpoints.RECIPES}/${ApiEndpoints.RANDOM}`,
     //   {
     //     params: {
@@ -24,5 +22,13 @@ export class RecipesApi {
     //   },
     // );
     return of({ recipes: MockRundomRecipes });
+  }
+
+  getRecipe(id: number): Observable<Recipe> {
+    // return this.httpClient.get<Recipe>(
+    //   `${ApiEndpoints.RECIPES}/${id}/${ApiEndpoints.INFORMATION}`,
+    // );
+
+    return of([...MockRundomRecipes].find((recipes) => recipes.id === id));
   }
 }

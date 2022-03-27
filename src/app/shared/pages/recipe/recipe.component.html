@@ -1,0 +1,30 @@
+<ion-content scrollX="true">
+  <ion-header color="primary">
+    <ion-toolbar>
+      <ion-title>{{ recipe.sourceName }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <div class="recipe">
+    <img class="recipe__image" [src]="recipe.image" />
+    <h2 class="recipe__title title text-align-center">{{ recipe.title }}</h2>
+    <chip-list
+      title="Diets:"
+      color="success"
+      [itemList]="recipe.diets">
+    </chip-list>
+    <chip-list
+      title="Dish types:"
+      color="secondary"
+      [itemList]="recipe.dishTypes">
+    </chip-list>
+    <ingredient-list
+      [extendedIngredients]="recipe.extendedIngredients">
+    </ingredient-list>
+    <step-list
+      [instructions]="recipe.analyzedInstructions">
+    </step-list>
+  </div>
+</ion-content>

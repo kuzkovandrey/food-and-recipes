@@ -1,3 +1,25 @@
-<p>
-  favorites works!
-</p>
+<ion-content scrollX="true">
+  <ng-template [ngIf]="favorites && favorites.length" [ngIfElse]="notFound">
+    <div class="page favorites-page">
+      <h1 class="title-2 text-align-center favorites-page__title">
+        Favorites recipes
+      </h1>
+      <ng-container *ngFor="let recipe of favorites$">
+        <food-card
+          (readMoreClicked)="openModal($event)"
+          [recipe]="recipe | async">
+        </food-card>
+      </ng-container>
+    </div>
+  </ng-template>
+  <ng-template #notFound>
+    <div class="page not-fount">
+      <h1 class="title-2 text-align-center not-fount__text">
+        You are have not a favorites recipes...
+      </h1>
+      <ion-button color="secondary" (click)="navigateToSearchPage()">
+        Search recipes
+      </ion-button>
+    </div>
+  </ng-template>
+</ion-content>

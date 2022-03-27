@@ -1,0 +1,9 @@
+<div class="step-list">
+  <h3 class="title-2 text-align-center step-list__title">Steps:</h3>
+  <ng-container *ngFor="let instruction of instructions">
+    <ng-container *ngFor="let step of instruction.steps">
+      <p class="step-list__step">- {{ step.step }}</p>
+    </ng-container>
+  </ng-container>
+</div>
+

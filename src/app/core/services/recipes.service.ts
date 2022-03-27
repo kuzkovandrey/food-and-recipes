@@ -13,4 +13,8 @@ export class RecipesService {
       .getRandomRecipes(count)
       .pipe(map((response) => response.recipes));
   }
+
+  getRecipe(id: number): Observable<Recipe> {
+    return this.recipesApi.getRecipe(id);
+  }
 }

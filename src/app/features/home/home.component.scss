@@ -3,12 +3,12 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+
+  &__title {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .button {
   width: 100%;
-}
-
-.title-2 {
-  margin-top: 20px;
 }

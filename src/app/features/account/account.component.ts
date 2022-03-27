@@ -24,13 +24,14 @@ export class AccountComponent implements OnInit, OnDestroy {
     private userStorageService: UserStorageService,
     private authService: AuthService,
     private router: Router,
-    public alertController: AlertController,
+    private alertController: AlertController,
   ) {}
 
   ngOnInit() {
     this.subscriptions.add(
       this.userStorageService.getCurrentUserInfo().subscribe((userInfo) => {
         this.userInfo = userInfo;
+        console.log(userInfo)
       }),
     );
 
@@ -59,13 +60,14 @@ export class AccountComponent implements OnInit, OnDestroy {
         {
           text: 'No',
           role: 'cancel',
-        }, {
+        },
+        {
           text: 'Yes',
           handler: () => {
             this.logout$.next();
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
 
     await alert.present();

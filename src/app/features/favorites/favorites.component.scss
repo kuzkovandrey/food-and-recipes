@@ -1,0 +1,22 @@
+.favorites-page {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  &__title {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.not-fount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &__text {
+    color: var(--ion-color-medium);
+    margin-bottom: 1rem;
+  }
+}

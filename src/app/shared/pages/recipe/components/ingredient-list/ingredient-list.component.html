@@ -1,0 +1,14 @@
+<ng-template [ngIf]="extendedIngredients.length">
+  <div class="list">
+    <ion-text color="secondary">
+      <h1 class="list__title title-2 text-align-center">Ingredients:</h1>
+    </ion-text>
+    <ion-slides pager="false">
+      <ng-container *ngFor="let ingredient of extendedIngredients">
+        <ion-slide class="list__slide">
+          <ingredient-card [ingredient]="ingredient"></ingredient-card>
+        </ion-slide>
+      </ng-container>
+    </ion-slides>
+  </div>
+</ng-template>

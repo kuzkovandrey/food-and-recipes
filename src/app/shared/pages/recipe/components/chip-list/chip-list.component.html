@@ -1,0 +1,12 @@
+<ng-template [ngIf]="itemList.length">
+  <div class="chip-list">
+    <p class="chip-list__subtitle sub-title">{{ title }}</p>
+    <div class="chip-list__items">
+      <ng-container *ngFor="let item of itemList">
+        <ion-chip [color]="color">
+          <ion-label [color]="color">{{ item }}</ion-label>
+        </ion-chip>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
