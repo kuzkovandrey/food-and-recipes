@@ -4,10 +4,10 @@ import { Component, OnDestroy } from '@angular/core';
 import { User } from '@features/auth/models/user.model';
 import { Observable, Subscription } from 'rxjs';
 import { UserInfo } from '@core/models/user-info.model';
-import { ToastController } from '@ionic/angular';
 import { ErrorResponse } from './models/error-response.model';
 import { ErrorMessages } from './values/error-messages.const';
 import { Router } from '@angular/router';
+import { ToastService } from '@core/services/toast.service';
 
 @Component({
   selector: 'auth',
@@ -21,7 +21,7 @@ export class AuthComponent implements OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private toastController: ToastController,
+    private toastService: ToastService,
     private router: Router,
   ) {}
 
@@ -35,23 +35,12 @@ export class AuthComponent implements OnDestroy {
       : this.authService.register(user);
   }
 
-  private async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 2000,
-      color: 'warning',
-    });
-    toast.present();
-  }
-
   private handleError = (error: ErrorResponse) => {
     console.log(error)
 
-    const message = !!ErrorMessages[error.code]
-      ? ErrorMessages[error.code]
-      : ErrorMessages.default;
+    const message = ErrorMessages[error.code] || ErrorMessages.default;
 
-    this.presentToast(message);
+    this.toastService.show(message);
   };
 
   private handleSuccessAuth = () => {

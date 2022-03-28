@@ -12,10 +12,14 @@ import { UidService } from '@core/services/uid.service';
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthorized = new BehaviorSubject(false);
+  private _isAuthorized = new BehaviorSubject(false);
 
   get isAuthorized$(): Observable<boolean> {
-    return this.isAuthorized.asObservable();
+    return this._isAuthorized.asObservable();
+  }
+
+  get isAuthorized(): boolean {
+    return this._isAuthorized.value;
   }
 
   constructor(
@@ -25,7 +29,7 @@ export class AuthService {
   ) {}
 
   setAuthStatus(status: boolean) {
-    this.isAuthorized.next(status);
+    this._isAuthorized.next(status);
   }
 
   private handleSuccessAuth = (userInfo: UserInfo) => {

@@ -13,6 +13,7 @@ import { FavoritesStorageService } from './services/favorites-storage.service';
 import { ModalService } from './services/modal.service';
 import { UidService } from './services/uid.service';
 import { LoadingService } from './services/loading.service';
+import { ToastService } from './services/toast.service';
 
 @NgModule({
   providers: [
@@ -25,6 +26,7 @@ import { LoadingService } from './services/loading.service';
     ModalService,
     UidService,
     LoadingService,
+    ToastService,
     RecipesApi,
     {
       provide: HTTP_INTERCEPTORS,

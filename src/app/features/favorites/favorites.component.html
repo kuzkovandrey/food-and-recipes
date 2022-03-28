@@ -1,5 +1,5 @@
 <ion-content scrollX="true">
-  <ng-template [ngIf]="favorites && favorites.length">
+  <ng-template [ngIf]="isShowFavorites">
     <div class="page favorites-page">
       <h1 class="title-2 text-align-center favorites-page__title">
         Favorites recipes
@@ -12,7 +12,7 @@
       </ng-container>
     </div>
   </ng-template>
-  <ng-template [ngIf]="!isLoading && (!favorites|| !favorites.length)">
+  <ng-template [ngIf]="isShowNotFoundView">
     <div class="page not-fount">
       <h1 class="title-2 text-align-center not-fount__text">
         You are have not a favorites recipes...

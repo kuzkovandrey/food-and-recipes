@@ -2,7 +2,7 @@
   <div class="page home-page">
     <ng-template [ngIf]="isAuthorized$ | async" [ngIfElse]="withoutAuth">
       <h1 class="title-2 text-align-center home-page__title">Randon recipes</h1>
-      <ng-container *ngFor="let recipe of recipes$ | async">
+      <ng-container *ngFor="let recipe of recipes">
         <food-card
           (readMoreClicked)="openModal($event)"
           [recipe]="recipe">

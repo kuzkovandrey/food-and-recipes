@@ -1,3 +1,4 @@
+import { HttpErrorMessages } from '@core/values/http-error-messages.enum';
 import { LoadingService } from '@core/services/loading.service';
 import { AppRoutes } from '@core/values/app-routes.enum';
 import { RecipesService } from '@core/services/recipes.service';
@@ -7,7 +8,9 @@ import { FavoritesStorageService } from '@core/services/favorites-storage.servic
 import { Subscription, Observable, Subject, forkJoin } from 'rxjs';
 import { ModalService } from '@core/services/modal.service';
 import { Router } from '@angular/router';
-import { delay, switchMap } from 'rxjs/operators';
+import { delay, switchMap, debounceTime, tap } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastService } from '@core/services/toast.service';
 
 @Component({
   selector: 'favorites',
@@ -21,6 +24,14 @@ export class FavoritesComponent implements OnInit, OnDestroy {
 
   private favorites$ = new Subject<Array<Observable<Recipe>>>();
 
+  get isShowFavorites(): boolean {
+    return this.favorites && !!this.favorites.length;
+  }
+
+  get isShowNotFoundView(): boolean {
+    return (!this.favorites|| !this.favorites.length) && !this.isLoading;
+  }
+
   favorites: Array<Recipe>;
 
   isLoading = true;
@@ -31,6 +42,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     private modalService: ModalService,
     private router: Router,
     private loadingService: LoadingService,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit() {
@@ -52,12 +64,10 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.favorites$.pipe(
         // delay(2000),
+        debounceTime(1),
         switchMap((array) => forkJoin(array)),
-      ).subscribe((favorites) => {
-        this.favorites = favorites;
-
-        this.hideLoader();
-      })
+        tap(() => this.hideLoader()),
+      ).subscribe(this.setFavoritesRecipes, this.handleError)
     );
   }
 
@@ -77,6 +87,14 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   private getRecipe(id: number): Observable<Recipe> {
     return this.recipesService.getRecipe(id);
   }
+
+  private handleError = (error: HttpErrorResponse) => {
+    this.toastService.show(HttpErrorMessages.DEFAULT);
+  };
+
+  private setFavoritesRecipes = (favorites: Recipe[]) => {
+    this.favorites = favorites;
+  };
 
   openModal(id: number) {
     this.modalService.openRecipeModal(id);
