@@ -14,6 +14,8 @@ import { ModalService } from './services/modal.service';
 import { UidService } from './services/uid.service';
 import { LoadingService } from './services/loading.service';
 import { ToastService } from './services/toast.service';
+import { SearchParamsService } from '@features/search/services/search-params.service';
+import { SearchService } from './services/search.service';
 
 @NgModule({
   providers: [
@@ -27,6 +29,8 @@ import { ToastService } from './services/toast.service';
     UidService,
     LoadingService,
     ToastService,
+    SearchParamsService,
+    SearchService,
     RecipesApi,
     {
       provide: HTTP_INTERCEPTORS,

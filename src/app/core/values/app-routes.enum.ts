@@ -6,4 +6,5 @@ export enum AppRoutes {
   AUTH = 'auth',
   ACCOUNT = 'account',
   ERROR = 'error',
+  RESULTS = 'results',
 }

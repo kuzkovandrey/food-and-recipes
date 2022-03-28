@@ -16,6 +16,7 @@ import { ModalService } from '@core/services/modal.service';
 import { ViewDidEnter } from '@ionic/angular';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { LoadingService } from '@core/services/loading.service';
+import { RecipeComponent } from '@shared/pages/recipe/recipe.component';
 
 @Component({
   selector: 'home',
@@ -93,7 +94,9 @@ export class HomeComponent implements OnInit, OnDestroy, ViewDidEnter {
   }
 
   openModal(id: number) {
-    this.modalService.openRecipeModal(id);
+    // this.modalService.openRecipeModal(id);
+    this.modalService.open(RecipeComponent, { id })
+
   }
 
 

@@ -1,0 +1,16 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-height: 100px;
+  width: 100%;
+  margin-inline: 0;
+
+  &__image {
+    max-height: 100px;
+  }
+
+  &__title {
+    padding: 1rem;
+  }
+}

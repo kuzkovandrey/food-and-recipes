@@ -3,4 +3,5 @@ export enum ApiEndpoints {
   RANDOM = 'random',
   INFORMATION = 'information',
   INGREDIENTS = 'ingredients',
+  COMPLEX_SEARCH = 'complexSearch',
 }

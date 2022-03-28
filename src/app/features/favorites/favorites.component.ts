@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { delay, switchMap, debounceTime, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from '@core/services/toast.service';
+import { RecipeComponent } from '@shared/pages/recipe/recipe.component';
 
 @Component({
   selector: 'favorites',
@@ -97,7 +98,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   };
 
   openModal(id: number) {
-    this.modalService.openRecipeModal(id);
+    this.modalService.open(RecipeComponent, { id })
   }
 
   navigateToSearchPage() {

@@ -422,7 +422,7 @@ export const MockRundomRecipes: Recipe[] = [
           },
         },
       ],
-      id: 633171,
+      id: 637797,
       title: 'Avocado-Mango Salad With Grilled Shrimp',
       readyInMinutes: 45,
       servings: 4,

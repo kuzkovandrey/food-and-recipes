@@ -1,0 +1,25 @@
+<div class="params-list">
+  <ion-list *ngIf="isVisibleParams">
+    <ng-container *ngFor="let param of searchParams; index as i">
+      <ion-item>
+        <ion-label>{{ param.name }}</ion-label>
+        <ion-select
+          (ionChange)="onChangeSelect($event, param.name)"
+          [value]="param.name"
+          interface="action-sheet">
+          <ng-container *ngFor="let value of param.values">
+            <ion-select-option
+              [value]="value === 'none' ? '' : value">
+              {{ value }}
+            </ion-select-option>
+          </ng-container>
+        </ion-select>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+  <ion-button
+    (click)="toggleVisibilityParams()"
+    color="light">
+    {{ isVisibleParams ? 'Hide' : 'Show' }} search params
+  </ion-button>
+</div>

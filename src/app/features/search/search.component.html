@@ -1,3 +1,36 @@
-<p>
-  search works!
-</p>
+<ion-content scrollY="true">
+  <div class="page search-page">
+    <ion-searchbar
+      class="search-page__search-bar"
+      showCancelButton="focus">
+    </ion-searchbar>
+    <div class="search-page__params-list">
+      <params-list></params-list>
+    </div>
+    <ion-button
+      (click)="onClickSearch()"
+      expand="full"
+      class="search-page__button"
+      color="success">
+      Search recipes
+    </ion-button>
+    <div class="search-page__result-section">
+      <ng-template [ngIf]="searchResult && searchResult.length">
+        <h2 class="title-2 text-align-center">Results:</h2>
+        <ng-container *ngFor="let recipe of searchResult">
+          <short-food-card
+            (click)="openRecipeModal(recipe.id)"
+            [title]="recipe.title"
+            [image]="recipe.image">
+          </short-food-card>
+        </ng-container>
+      </ng-template>
+
+      <ng-template [ngIf]="searchResult && !searchResult.length">
+        <h2 class="title-2 text-align-center">
+          The search has not given any results...
+        </h2>
+      </ng-template>
+    </div>
+  </div>
+</ion-content>
