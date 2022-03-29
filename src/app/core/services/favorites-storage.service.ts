@@ -28,6 +28,8 @@ export class FavoritesStorageService {
   getFavorites(): Observable<Favorites> {
     return this.storageService.get<Favorites>(StorageKeys.FAVORITES).pipe(
       map((favorites) => favorites ? favorites : []),
+      tap((f) => console.log('favorites', f)),
+      map((favorites) => favorites.filter((id) => !!id)),
     );
   }
 

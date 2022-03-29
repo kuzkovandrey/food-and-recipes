@@ -30,8 +30,6 @@ export class ParamsListComponent implements OnInit {
 
     this.searchParamsService.setParams(this.params);
 
-    //QueryParamsUtil.prepareToSend()
-
     console.log(
       QueryParamsUtil.removeEmpty(this.params)
     )

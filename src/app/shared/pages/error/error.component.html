@@ -3,5 +3,10 @@
   <p class="sub-title error__description text-align-center">
     {{ errorMessage }}
   </p>
-  <ion-button class="error__button" expand="full">Back</ion-button>
+  <ion-button
+    (click)="navigateToPreviosPage()"
+    class="error__button"
+    expand="full">
+    Back
+  </ion-button>
 </div>

@@ -1,5 +1,7 @@
-<div class="params-list">
-  <ion-list *ngIf="isVisibleParams">
+<div class="params-list-wrapper" >
+  <ion-list
+    class="params-list"
+    [class.params-list--hidden]="!isVisibleParams">
     <ng-container *ngFor="let param of searchParams; index as i">
       <ion-item>
         <ion-label>{{ param.name }}</ion-label>

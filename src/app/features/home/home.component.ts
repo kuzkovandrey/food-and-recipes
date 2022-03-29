@@ -1,20 +1,13 @@
-import { FoodCardComponent } from '@shared/components/food-card/food-card.component';
 import { AuthService } from '@features/auth/services/auth.service';
 import { RecipesService } from '@core/services/recipes.service';
 import { AppRoutes } from '@core/values/app-routes.enum';
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ViewChildren,
-  QueryList,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, Observable, Subject } from 'rxjs';
 import { Recipe } from '@core/models/recipe.model';
 import { ModalService } from '@core/services/modal.service';
-import { ViewDidEnter } from '@ionic/angular';
-import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
+import { ViewDidEnter, ViewWillEnter } from '@ionic/angular';
+import { debounceTime, switchMap, tap } from 'rxjs/operators';
 import { LoadingService } from '@core/services/loading.service';
 import { RecipeComponent } from '@shared/pages/recipe/recipe.component';
 
@@ -23,15 +16,10 @@ import { RecipeComponent } from '@shared/pages/recipe/recipe.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, OnDestroy, ViewDidEnter {
+export class HomeComponent implements OnInit, OnDestroy, ViewWillEnter {
   private readonly subscriptions = new Subscription();
 
   private readonly getRandomRecipes$ = new Subject<void>();
-
-  private isAuthorized = false;
-
-  // TODO: Remote after add endpoint
-  @ViewChildren(FoodCardComponent) private cards: QueryList<FoodCardComponent>;
 
   isAuthorized$: Observable<boolean>;
 
@@ -68,11 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy, ViewDidEnter {
     this.subscriptions.unsubscribe();
   }
 
-  ionViewDidEnter() {
-    // TODO: Remote after add endpoint
-    if (this.cards)
-      this.cards.toArray().forEach((card) => card.checkFavoriteStatus());
-
+  ionViewWillEnter() {
     if (this.authService.isAuthorized) this.getRandomRecipes$.next();
   }
 
@@ -94,10 +78,6 @@ export class HomeComponent implements OnInit, OnDestroy, ViewDidEnter {
   }
 
   openModal(id: number) {
-    // this.modalService.openRecipeModal(id);
-    this.modalService.open(RecipeComponent, { id })
-
+    this.modalService.open(RecipeComponent, { id });
   }
-
-
 }

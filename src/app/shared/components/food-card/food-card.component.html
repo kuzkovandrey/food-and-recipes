@@ -8,16 +8,6 @@
   </ion-card-header>
   <ion-card-content>
     <div class="footer-wrapper">
-      <ion-button
-        (click)="onToggleFavoritesStatus()"
-        class="card__button button"
-        color="success"
-        [fill]="isFavorite ? 'solid' : 'outline'">
-        <ion-icon class="button__icon" slot="start" name="star"></ion-icon>
-        <span class="button__text">
-          {{ isFavorite ? 'Del' : 'Add' }}
-        </span>
-      </ion-button>
       <ion-label
         (click)="onClickReadMore()"
         class="card__label"

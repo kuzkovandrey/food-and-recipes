@@ -1,14 +1,15 @@
+import { ViewWillEnter, ViewWillLeave } from '@ionic/angular';
 import { HttpErrorMessages } from '@core/values/http-error-messages.enum';
 import { LoadingService } from '@core/services/loading.service';
 import { AppRoutes } from '@core/values/app-routes.enum';
 import { RecipesService } from '@core/services/recipes.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Recipe } from '@core/models/recipe.model';
 import { FavoritesStorageService } from '@core/services/favorites-storage.service';
 import { Subscription, Observable, Subject, forkJoin } from 'rxjs';
 import { ModalService } from '@core/services/modal.service';
 import { Router } from '@angular/router';
-import { delay, switchMap, debounceTime, tap } from 'rxjs/operators';
+import { delay, switchMap, debounceTime, tap, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from '@core/services/toast.service';
 import { RecipeComponent } from '@shared/pages/recipe/recipe.component';
@@ -18,7 +19,7 @@ import { RecipeComponent } from '@shared/pages/recipe/recipe.component';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'],
 })
-export class FavoritesComponent implements OnInit, OnDestroy {
+export class FavoritesComponent implements  ViewWillEnter, ViewWillLeave {
   private readonly subscriptions = new Subscription();
 
   private favoritesObservablesArray: Array<Observable<Recipe>>;
@@ -30,7 +31,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   }
 
   get isShowNotFoundView(): boolean {
-    return (!this.favorites|| !this.favorites.length) && !this.isLoading;
+    return (!this.favorites || !this.favorites.length) && !this.isLoading;
   }
 
   favorites: Array<Recipe>;
@@ -46,7 +47,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     private toastService: ToastService,
   ) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.subscriptions.add(
       this.favoritesStorageService.getFavorites().subscribe((favorites) => {
         if (!favorites.length) {
@@ -56,23 +57,28 @@ export class FavoritesComponent implements OnInit, OnDestroy {
 
         this.showLoader();
 
-        this.favoritesObservablesArray = favorites.map((id) => this.getRecipe(id));
+        this.favoritesObservablesArray = favorites.map((id) =>
+          this.getRecipe(id),
+        );
 
         this.favorites$.next(this.favoritesObservablesArray);
       }),
     );
 
     this.subscriptions.add(
-      this.favorites$.pipe(
-        // delay(2000),
-        debounceTime(1),
-        switchMap((array) => forkJoin(array)),
-        tap(() => this.hideLoader()),
-      ).subscribe(this.setFavoritesRecipes, this.handleError)
+      this.favorites$
+        .pipe(
+          // delay(2000),
+          debounceTime(1),
+          switchMap((array) => forkJoin(array)),
+          map((favorites) => favorites.filter((fav) => !!fav)),
+          tap(() => this.hideLoader()),
+        )
+        .subscribe(this.setFavoritesRecipes, this.handleError),
     );
   }
 
-  ngOnDestroy() {
+  ionViewWillLeave() {
     this.subscriptions.unsubscribe();
   }
 
@@ -94,11 +100,12 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   };
 
   private setFavoritesRecipes = (favorites: Recipe[]) => {
+    console.log(favorites);
     this.favorites = favorites;
   };
 
   openModal(id: number) {
-    this.modalService.open(RecipeComponent, { id })
+    this.modalService.open(RecipeComponent, { id });
   }
 
   navigateToSearchPage() {

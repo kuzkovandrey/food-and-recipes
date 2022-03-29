@@ -10,21 +10,31 @@
   <div class="recipe">
     <img class="recipe__image" [src]="recipe.image" />
     <h2 class="recipe__title title text-align-center">{{ recipe.title }}</h2>
-    <chip-list
-      title="Diets:"
-      color="success"
-      [itemList]="recipe.diets">
+    <chip-list title="Diets:" color="success" [itemList]="recipe.diets">
     </chip-list>
     <chip-list
       title="Dish types:"
       color="secondary"
-      [itemList]="recipe.dishTypes">
+      [itemList]="recipe.dishTypes"
+    >
     </chip-list>
-    <ingredient-list
-      [extendedIngredients]="recipe.extendedIngredients">
+    <ingredient-list [extendedIngredients]="recipe.extendedIngredients">
     </ingredient-list>
-    <step-list
-      [instructions]="recipe.analyzedInstructions">
-    </step-list>
+    <step-list [instructions]="recipe.analyzedInstructions"> </step-list>
+
+    <ion-button
+      (click)="onToggleFavoritesStatus()"
+      class="card__button button"
+      [color]="isFavorite ? 'danger' : 'success'"
+      [fill]="isFavorite ? 'solid' : 'outline'">
+      <ion-icon
+        class="button__icon"
+        slot="start"
+        name="star">
+      </ion-icon>
+      <span class="button__text">
+        {{ isFavorite ? 'Delele from favorites' : 'Add to favorites' }}
+      </span>
+    </ion-button>
   </div>
 </ion-content>
