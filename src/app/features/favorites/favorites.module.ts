@@ -6,7 +6,12 @@ import { FavoritesRoutingModule } from './favorites-routing.module';
 import { FoodCardModule } from '@shared/components/food-card/food-card.module';
 
 @NgModule({
-  imports: [CommonModule, FavoritesRoutingModule, IonicModule, FoodCardModule],
+  imports: [
+    CommonModule,
+    FavoritesRoutingModule,
+    IonicModule,
+    FoodCardModule
+  ],
   declarations: [FavoritesComponent],
 })
 export class FavoritesModule {}

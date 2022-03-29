@@ -8,7 +8,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [CommonModule, AuthRoutingModule, IonicModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    IonicModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     AuthComponent,
     AuthFormComponent,

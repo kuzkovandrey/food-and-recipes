@@ -6,7 +6,12 @@ import { HomeRoutingModule } from './home-routing.module';
 import { FoodCardModule } from '@shared/components/food-card/food-card.module';
 
 @NgModule({
-  imports: [CommonModule, HomeRoutingModule, IonicModule, FoodCardModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    IonicModule,
+    FoodCardModule
+  ],
   declarations: [HomeComponent],
 })
 export class HomeModule {}

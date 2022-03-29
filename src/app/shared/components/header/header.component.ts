@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   headerName = 'Home';
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.subscriptions.add(

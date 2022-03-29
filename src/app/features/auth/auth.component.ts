@@ -36,8 +36,6 @@ export class AuthComponent implements OnDestroy {
   }
 
   private handleError = (error: ErrorResponse) => {
-    console.log(error)
-
     const message = ErrorMessages[error.code] || ErrorMessages.default;
 
     this.toastService.show(message);
@@ -55,7 +53,10 @@ export class AuthComponent implements OnDestroy {
 
   sendForm(user: User) {
     this.subscriptions.add(
-      this.authorize(user).subscribe(this.handleSuccessAuth, this.handleError),
+      this.authorize(user).subscribe(
+        this.handleSuccessAuth,
+        this.handleError
+      ),
     );
   }
 }

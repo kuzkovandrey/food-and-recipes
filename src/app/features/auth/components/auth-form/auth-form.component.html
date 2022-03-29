@@ -1,13 +1,23 @@
 <form [formGroup]="userForm" class="form">
   <ion-item>
     <ion-label position="floating">Email</ion-label>
-    <ion-input formControlName="email" type="email"> </ion-input>
+    <ion-input
+      formControlName="email"
+      type="email">
+    </ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Password</ion-label>
-    <ion-input formControlName="password" type="password"> </ion-input>
+    <ion-input
+      formControlName="password"
+      type="password">
+    </ion-input>
   </ion-item>
-  <ion-button (click)="sendForm()" [disabled]="userForm.invalid" class="form__button" expand="block">
+  <ion-button
+    (click)="sendForm()"
+    [disabled]="userForm.invalid"
+    class="form__button"
+    expand="block">
     {{ isSignIn ? 'Sign in' : 'Sign up' }}
   </ion-button>
 </form>

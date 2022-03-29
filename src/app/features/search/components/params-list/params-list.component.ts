@@ -29,10 +29,6 @@ export class ParamsListComponent implements OnInit {
     this.params[paramName] = event.detail.value;
 
     this.searchParamsService.setParams(this.params);
-
-    console.log(
-      QueryParamsUtil.removeEmpty(this.params)
-    )
   }
 
   toggleVisibilityParams() {

@@ -1,4 +1,4 @@
-import { Step } from "./step.model";
+import { Step } from './step.model';
 
 export interface AnalyzedInstruction {
   name: string;

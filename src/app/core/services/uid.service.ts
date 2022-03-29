@@ -11,6 +11,5 @@ export class UidService {
 
   setUid(uid: string) {
     this.uid.next(uid);
-    console.log(uid);
   }
 }

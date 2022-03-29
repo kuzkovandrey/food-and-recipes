@@ -11,7 +11,9 @@ export class SearchParamsService {
     [QueryParams.DIET]: '',
   };
 
-  private readonly params = new BehaviorSubject<SearchParamType>(this.default);
+  private readonly params = new BehaviorSubject<SearchParamType>(
+    this.default
+  );
 
   get defaultParams(): SearchParamType {
     return {...this.default };

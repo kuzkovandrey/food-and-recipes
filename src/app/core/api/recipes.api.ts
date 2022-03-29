@@ -23,6 +23,8 @@ export class RecipesApi {
         },
       },
     );
+
+    // Mock data
     return of({ recipes: MockRundomRecipes });
   }
 
@@ -31,6 +33,7 @@ export class RecipesApi {
       `${ApiEndpoints.RECIPES}/${id}/${ApiEndpoints.INFORMATION}`,
     );
 
+    // Mock data
     return of([...MockRundomRecipes].find((recipes) => recipes.id === id));
   }
 
@@ -50,6 +53,7 @@ export class RecipesApi {
       },
     );
 
+    // Mock data
     return of({
       offset: 1,
       number: 1,

@@ -9,7 +9,7 @@ import { FavoritesStorageService } from '@core/services/favorites-storage.servic
 import { Subscription, Observable, Subject, forkJoin } from 'rxjs';
 import { ModalService } from '@core/services/modal.service';
 import { Router } from '@angular/router';
-import { delay, switchMap, debounceTime, tap, map } from 'rxjs/operators';
+import { switchMap, debounceTime, tap, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from '@core/services/toast.service';
 import { RecipeComponent } from '@shared/pages/recipe/recipe.component';
@@ -68,7 +68,6 @@ export class FavoritesComponent implements  ViewWillEnter, ViewWillLeave {
     this.subscriptions.add(
       this.favorites$
         .pipe(
-          // delay(2000),
           debounceTime(1),
           switchMap((array) => forkJoin(array)),
           map((favorites) => favorites.filter((fav) => !!fav)),

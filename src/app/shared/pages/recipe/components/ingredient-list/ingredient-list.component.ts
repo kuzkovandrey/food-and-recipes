@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ExtendedIngredient } from '@core/models/extended-ingredient.model';
 
 @Component({
@@ -7,11 +7,6 @@ import { ExtendedIngredient } from '@core/models/extended-ingredient.model';
   styleUrls: ['./ingredient-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IngredientListComponent implements OnInit {
+export class IngredientListComponent {
   @Input() extendedIngredients: ExtendedIngredient[];
-
-  constructor() { }
-
-  ngOnInit() {}
-
 }

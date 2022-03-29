@@ -8,8 +8,16 @@ import { SearchParamsService } from './services/search-params.service';
 import { ShortFoodCardComponent } from './components/short-food-card/short-food-card.component';
 
 @NgModule({
-  imports: [CommonModule, SearchRoutingModule, IonicModule],
-  declarations: [SearchComponent, ParamsListComponent, ShortFoodCardComponent],
+  imports: [
+    CommonModule,
+    SearchRoutingModule,
+    IonicModule
+  ],
+  declarations: [
+    SearchComponent,
+    ParamsListComponent,
+    ShortFoodCardComponent
+  ],
   providers: [SearchParamsService],
 })
 export class SearchModule {}

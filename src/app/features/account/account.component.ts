@@ -31,7 +31,6 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.userStorageService.getCurrentUserInfo().subscribe((userInfo) => {
         this.userInfo = userInfo;
-        console.log(userInfo)
       }),
     );
 

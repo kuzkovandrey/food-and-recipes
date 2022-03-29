@@ -28,7 +28,6 @@ export class FavoritesStorageService {
   getFavorites(): Observable<Favorites> {
     return this.storageService.get<Favorites>(StorageKeys.FAVORITES).pipe(
       map((favorites) => favorites ? favorites : []),
-      tap((f) => console.log('favorites', f)),
       map((favorites) => favorites.filter((id) => !!id)),
     );
   }
@@ -36,9 +35,7 @@ export class FavoritesStorageService {
   isFavorite(id: number): Observable<boolean> {
     return this.getFavorites().pipe(
       map((favorites) => favorites.find((_id) => _id === id)),
-      tap((f) => console.log('finded', f)),
       map((isFavorite) => !!isFavorite),
-      tap((i) => console.log('isFavorite', i)),
     );
   }
 
