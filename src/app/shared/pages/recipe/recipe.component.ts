@@ -39,7 +39,7 @@ export class RecipeComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(
       this.favoritesStorageService
-        .isFavorite(this.recipe.id)
+        .isFavorite(this.id)
         .subscribe(this.setFavoriteStatus),
     );
 
@@ -52,7 +52,7 @@ export class RecipeComponent implements OnInit, OnDestroy {
           ),
         )
         .subscribe(() => {
-          this.checkFavoriteStatus$.next(this.recipe.id);
+          this.checkFavoriteStatus$.next(this.id);
         }),
     );
 

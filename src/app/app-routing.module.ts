@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.SEARCH,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/search/search.module').then((m) => m.SearchModule),
   },

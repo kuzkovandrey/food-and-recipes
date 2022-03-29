@@ -15,21 +15,21 @@ export class RecipesApi {
   constructor(private httpClient: HttpClient) {}
 
   getRandomRecipes(count: number): Observable<RandomRecipesResponce> {
-    // return this.httpClient.get<RandomRecipesResponce>(
-    //   `${ApiEndpoints.RECIPES}/${ApiEndpoints.RANDOM}`,
-    //   {
-    //     params: {
-    //       [QueryParams.NUMBER]: `${count}`,
-    //     },
-    //   },
-    // );
+    return this.httpClient.get<RandomRecipesResponce>(
+      `${ApiEndpoints.RECIPES}/${ApiEndpoints.RANDOM}`,
+      {
+        params: {
+          [QueryParams.NUMBER]: `${count}`,
+        },
+      },
+    );
     return of({ recipes: MockRundomRecipes });
   }
 
   getRecipe(id: number): Observable<Recipe> {
-    // return this.httpClient.get<Recipe>(
-    //   `${ApiEndpoints.RECIPES}/${id}/${ApiEndpoints.INFORMATION}`,
-    // );
+    return this.httpClient.get<Recipe>(
+      `${ApiEndpoints.RECIPES}/${id}/${ApiEndpoints.INFORMATION}`,
+    );
 
     return of([...MockRundomRecipes].find((recipes) => recipes.id === id));
   }
@@ -37,18 +37,18 @@ export class RecipesApi {
   searchRecipes(
     query: string,
     queryParams: SearchParamType,
-    maxResults = 2,
+    maxResults = 20,
   ): Observable<SearchRecipesResponce> {
-    // return this.httpClient.get<SearchRecipesResponce>(
-    //   `${ApiEndpoints.RECIPES}/${ApiEndpoints.COMPLEX_SEARCH}`,
-    //   {
-    //     params: {
-    //       [QueryParams.QUERY]: query,
-    //       [QueryParams.NUMBER]: maxResults,
-    //       ...queryParams,
-    //     },
-    //   },
-    // );
+    return this.httpClient.get<SearchRecipesResponce>(
+      `${ApiEndpoints.RECIPES}/${ApiEndpoints.COMPLEX_SEARCH}`,
+      {
+        params: {
+          [QueryParams.QUERY]: query,
+          [QueryParams.NUMBER]: maxResults,
+          ...queryParams,
+        },
+      },
+    );
 
     return of({
       offset: 1,

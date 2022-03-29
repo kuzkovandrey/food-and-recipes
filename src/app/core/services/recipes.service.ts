@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 export class RecipesService {
   constructor(private recipesApi: RecipesApi) {}
 
-  getRandomRecipes(count: number = 3): Observable<Recipe[]> {
+  getRandomRecipes(count: number = 20): Observable<Recipe[]> {
     return this.recipesApi
       .getRandomRecipes(count)
       .pipe(map((response) => response.recipes));
